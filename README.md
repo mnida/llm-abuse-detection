@@ -1,6 +1,6 @@
 # LLM Abuse and Appropriateness Detection
 
-The goal of this project is to build a system that can classify whether a prompt is inappropriate or not. This is a common field in trust and safety for large foundation model providers and is an interesting problem to tackle because you are always adapting to bad actors and learning the model's potentially harmful outputs. This repo should demonstrate a few ideas around how to tackle this.
+The goal of this project is to build a system that can classify whether a prompt is inappropriate or not. This is a common field in trust and safety for large foundation model providers and is an interesting problem to tackle because you are always adapting to bad actors and learning the model's potentially harmful outputs. This repo should demonstrate a few initial ideas around how to tackle this.
 
 The main code is in generate_data.py and train.py and I wrote an example function in detection.py of what I would use if I were to spin up an API.
 
