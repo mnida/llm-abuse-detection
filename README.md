@@ -61,7 +61,7 @@ Test set of 23 samples (10 inappropriate, 13 appropriate). While this is realist
 | Random Forest       | 78.3%    | 0%        | 0%     |
 | Logistic Regression | 82.6%    | 100%      | 20%    |
 
-The random forest only predicted 0.
+The random forest only predicted 0. In this table positive was considered 1/inappropriate and negative was 0/appropriate.
 
 For this case, I think precision is slightly more important than recall. Obviously recall is important because we don't want many cases where a FN is predicted, however everytime we have a FP we are angering users and potentially generating bad press.
 
