@@ -3,6 +3,7 @@ import torch.nn as nn
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 import pandas as pd
 import pickle
@@ -42,7 +43,6 @@ def train_random_forest(X_train, y_train)-> None:
 
 
 def train_logistic_regression(X_train, y_train) -> None:
-    from sklearn.linear_model import LogisticRegression
 
     # Create a bag of words representation of the data
     vectorizer = CountVectorizer()
@@ -65,12 +65,13 @@ def train_and_eval() -> None:
     # Split the positive samples into train and test sets
     
     # We want at least 8 samples for training
-    #TODO Remove this hardcoding of 8 samples
-    X_positive_train = positive_samples['text'][:8]
-    y_positive_train = positive_samples['label'][:8]
-    X_positive_test = positive_samples['text'][8:]
-    y_positive_test = positive_samples['label'][8:]
+    X_positive = positive_samples['text']
+    y_positive = positive_samples['label']
 
+    #TODO Remove this hardcoding of 13 samples
+
+    X_positive_train, X_positive_test, y_positive_train, y_positive_test = train_test_split(
+        X_positive, y_positive, test_size=13, random_state=42)
     # Split the negative samples into train and test sets
     X_negative_train, X_negative_test, y_negative_train, y_negative_test = train_test_split(
         negative_samples['text'], negative_samples['label'], test_size=0.2, random_state=42)

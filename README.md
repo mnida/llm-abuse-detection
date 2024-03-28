@@ -18,6 +18,8 @@ If I were to work on this project in an extended capacity, I would put the major
 
 However, since this is a sample project I will continue with data on the order of 100 samples because I don't want to have to handwrite more inappropriate prompts.
 
+## Update: I added a bit more data to the dataset and retrained the models. New results in result section.
+
 # Three methods of classification
 
 ## 1. LLM classifies whether it is appropriate or not.
@@ -53,17 +55,29 @@ Overall, we have a large class imbalance, which will be present in most datasets
 
 ## Results
 
-Test set of 23 samples (10 inappropriate, 13 appropriate). While this is realistically too small to compare models, it did give insight to how well the LLM approach works.
+### New results with more data
 
-| Approach            | Accuracy | Precision | Recall |
-| ------------------- | -------- | --------- | ------ |
-| LLM                 | 100%     | 100%      | 100%   |
-| Random Forest       | 78.3%    | 0%        | 0%     |
-| Logistic Regression | 82.6%    | 100%      | 20%    |
+    | Approach            | Accuracy | Precision | Recall |
+    | ------------------- | -------- | --------- | ------ |
+    | LLM                 | 100%     | 100%      | 100%   |
+    | Random Forest       | 70%      | 100%      | 7.70%  |
+    | Logistic Regression | 77.5%    | 83.3%     | 38.5%  |
 
-The random forest only predicted 0. In this table positive was considered 1/inappropriate and negative was 0/appropriate.
+    With a bit more data, now the random forest is able to perform better and start to predict some positive cases. However the recall is still terrible which means its inapporiate predictions are still probably pretty conservative.
 
-For this case, I think precision is slightly more important than recall. Obviously recall is important because we don't want many cases where a FN is predicted, however everytime we have a FP we are angering users and potentially generating bad press.
+### Old results
+
+    Test set of 23 samples (10 inappropriate, 13 appropriate). While this is realistically too small to compare models, it did give insight to how well the LLM approach works.
+
+    | Approach            | Accuracy | Precision | Recall |
+    | ------------------- | -------- | --------- | ------ |
+    | LLM                 | 100%     | 100%      | 100%   |
+    | Random Forest       | 78.3%    | 0%        | 0%     |
+    | Logistic Regression | 82.6%    | 100%      | 20%    |
+
+    The random forest only predicted 0. In this table positive was considered 1/inappropriate and negative was 0/appropriate.
+
+    For this case, I think precision is slightly more important than recall. Obviously recall is important because we don't want many cases where a FN is predicted, however everytime we have a FP we are angering users and potentially generating bad press.
 
 Therefore precision and recall are a tradeoff between the average user experience and making sure no inappropriate prompts get through. I would slightly lean towards precision, under the assumption that our system is much better at catching really potentially harmful prompts like how to make a bomb but it has a higher chance of letting a prompt like "I hate you" through.
 
