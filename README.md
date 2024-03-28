@@ -4,7 +4,7 @@ The goal of this project is to build a system that can classify whether a prompt
 
 The main code is in generate_data.py and train.py and I wrote an example function in detection.py of what I would use if I were to spin up an API.
 
-#### Disclaimer: I am only using OpenAI models because I have many credits leftover from my startup.
+#### Disclaimer: I am only using OpenAI models because I have many credits left from my startup.
 
 # Dataset Generation
 
@@ -18,7 +18,7 @@ If I were to work on this project in an extended capacity, I would put the major
 
 However, since this is a sample project I will continue with data on the order of 100 samples because I don't want to have to handwrite more inappropriate prompts.
 
-## Update: I added a bit more data to the dataset and retrained the models. New results in result section.
+#### Update: I added a bit more data to the dataset and retrained the models. New results in result section.
 
 # Three methods of classification
 
@@ -39,9 +39,9 @@ Pros:
 I chose a random forest (RF) because we have a very small dataset and RFs tend to have lower variance due to the random bagging of trees. If we had more data I would have choosen a gradient boosting model that could lower bias more.
 
 Cons:
-As I mentioned these models will have a higher bias which means lower accuracy, which might not be the best for a system that values precision.
+As I mentioned, these models will have a higher bias, which means lower accuracy, which might not be the best for a system that values precision.
 
-In practice this performed pretty poorly, moslty likely due to the small amount of data and class imbalance. When I added a bit more data of both classes to the training, its performance improved substantially.
+In practice, this performed pretty poorly, mostly likely due to the small amount of data and class imbalance. When I added a bit more data of both classes to the training, its performance improved substantially.
 
 ## 3. Logistic Regression Classifier
 
@@ -63,7 +63,7 @@ Overall, we have a large class imbalance, which will be present in most datasets
     | Random Forest       | 70%      | 100%      | 7.70%  |
     | Logistic Regression | 77.5%    | 83.3%     | 38.5%  |
 
-    With a bit more data, now the random forest is able to perform better and start to predict some positive cases. However the recall is still terrible which means its inapporiate predictions are still probably pretty conservative.
+    With a bit more data, now the random forest is able to perform better and start to predict some positive cases. However, the recall is still terrible, which means its inappropriate predictions are still probably pretty conservative.
 
 ### Old results
 
@@ -77,7 +77,7 @@ Overall, we have a large class imbalance, which will be present in most datasets
 
     The random forest only predicted 0. In this table positive was considered 1/inappropriate and negative was 0/appropriate.
 
-    For this case, I think precision is slightly more important than recall. Obviously recall is important because we don't want many cases where a FN is predicted, however everytime we have a FP we are angering users and potentially generating bad press.
+For this case, I think precision is slightly more important than recall. Obviously recall is important because we don't want many cases where a FN is predicted, however everytime we have a FP we are angering users and potentially generating bad press.
 
 Therefore precision and recall are a tradeoff between the average user experience and making sure no inappropriate prompts get through. I would slightly lean towards precision, under the assumption that our system is much better at catching really potentially harmful prompts like how to make a bomb but it has a higher chance of letting a prompt like "I hate you" through.
 
