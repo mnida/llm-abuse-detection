@@ -41,7 +41,7 @@ I chose a random forest (RF) because we have a very small dataset and RFs tend t
 Cons:
 As I mentioned these models will have a higher bias which means lower accuracy, which might not be the best for a system that values precision.
 
-In practice this performed horribly and only classified 0s. I would chalk this up to not enough data.
+In practice this performed pretty poorly, moslty likely due to the small amount of data and class imbalance. When I added a bit more data of both classes to the training, its performance improved substantially.
 
 ## 3. Logistic Regression Classifier
 
